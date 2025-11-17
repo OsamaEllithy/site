@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egyptian Legacy</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&display=swap');
+
+/* Global & Base Styles */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --color-dark: #0d0d0d;
+    --color-light: #f0f0f0;
+    --color-grey: #999;
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: "Reem Kufi", sans-serif;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Preloader Styles */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+    flex-direction: column;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader-logo {
+    width: 100px;
+    height: auto;
+    opacity: 0;
+    animation: fadeIn 1s forwards, fadeOutUp 0.8s forwards 3s;
+}
+
+/* Preloader Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeOutUp {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-50px); }
+}
+
+
+/* Layout Structure */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.left-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+    padding-right: 0;
+    min-width: 45%;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideInLeft 1s forwards var(--transition-speed);
+}
+
+.right-panel {
+    flex: 1;
+    position: relative;
+    height: 100vh;
+    padding: 0;
+    background-color: var(--color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideInRight 1s forwards var(--transition-speed);
+}
+
+/* Header & Navigation */
+.header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+    gap: 40px;
+}
+
+.logo {
+    margin: 0;
+    width: auto;
+    height: 45px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    opacity: 0.7;
+    transition: opacity var(--transition-speed);
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+.contact-btn {
+    background-color: transparent;
+    border: 1px solid var(--color-light);
+    font-family: "Reem Kufi", sans-serif;
+    color: var(--color-light);
+    padding: 8px 14px;
+    border-radius: 25px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 10;
+    text-decoration: none;
+}
+
+.contact-btn:hover {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+/* Mobile Toggle Button */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 20;
+    margin-left: auto;
+}
+
+/* Main Content (Text) */
+.main-content {
+    margin-top: 50px;
+    padding: 0 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.5s;
+}
+
+.main-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    font-family: "Reem Kufi", sans-serif;
+}
+
+.main-content p {
+    font-size: 1rem;
+    color: var(--color-grey);
+    max-width: 450px;
+    line-height: 1.6;
+}
+
+/* Gallery Section (Desktop) */
+.gallery-section {
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeInUp 1s forwards 0.7s;
+}
+
+.gallery-thumbnails-wrapper {
+    max-width: 390px;
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    flex-grow: 1;
+    padding: 5px 0;
+    box-sizing: content-box;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 15px;
+    flex-shrink: 0;
+    width: calc(5 * 120px + 4 * 15px);
+}
+
+.thumbnail {
+    min-width: 120px;
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-speed), border var(--transition-speed), opacity var(--transition-speed);
+    border: 2px solid transparent;
+    opacity: 0.5;
+}
+
+.thumbnail.active {
+    border: 2px solid var(--color-light);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+    border: 2px solid var(--color-light);
+    opacity: 1;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-controls {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+
+.arrow-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow-btn:hover {
+    background-color: #555;
+}
+
+/* Right Panel - Image & Labels */
+.main-image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity var(--transition-speed) ease-in-out;
+    position: relative;
+    /* Desktop Radii - only left side curved */
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.labels {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1s;
+}
+
+.label, .location-label, .experience-label {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-light);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    backdrop-filter: blur(5px);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    display: inline-block;
+}
+
+.label:hover, .location-label:hover, .experience-label:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.location-label {
+    position: absolute;
+    top: 25%;
+    right: 15%;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1.2s;
+}
+
+.location-label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-light);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.experience-label {
+    position: absolute;
+    bottom: 30%;
+    left: 15%;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1.4s;
+}
+
+.experience-label::before {
+    content: '';
+    position: absolute;
+    bottom: 50%;
+    right: -15px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-light);
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+/* Animations */
+@keyframes slideInLeft {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* --- Responsive Design (Media Queries) --- */
+
+/* Mobile Navigation Menu */
+.mobile-nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 13, 13, 0.95);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.mobile-nav-menu.open {
+    transform: translateY(0);
+}
+
+.mobile-nav-menu a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 15px 0;
+    transition: opacity var(--transition-speed);
+}
+
+.mobile-nav-menu a:hover {
+    opacity: 0.7;
+}
+
+.mobile-nav-menu .mobile-contact-btn {
+    background-color: transparent;
+    border: 0.5px solid white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.mobile-nav-menu .mobile-contact-btn:hover {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+}
+
+.close-btn {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--color-light);
+    cursor: pointer;
+}
+
+
+/* Mobile Devices (Max 768px) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        width: 100%;
+        padding: 20px 0;
+        min-height: auto;
+    }
+
+    .right-panel {
+        height: 70vh;
+        width: 100%;
+        margin: 0; /* تم إضافته لضمان إزالة أي هوامش خارجية */
+        padding: 0; /* تم إضافته لضمان إزالة أي هوامش داخلية */
+    }
+
+    .header {
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .contact-btn {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .main-content {
+        margin-top: 30px;
+        padding: 0 20px;
+    }
+
+    .main-content h1 {
+        font-size: 2.5rem;
+    }
+
+    /* FIX: Main Image Radii to stick to bottom and sides but keep top curved */
+    .main-image {
+        /* إعداد جميع الزوايا بشكل صريح لضمان إلغاء تأثير الديسكتوب */
+        border-top-left-radius: 30px; 
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    
+    /* Gallery (Thumbnails) */
+    .gallery-section {
+        flex-direction: column;
+        padding: 0;
+        margin-bottom: 40px;
+    }
+
+    .gallery-thumbnails-wrapper {
+        max-width: 100%;
+        width: 100%; 
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 5px 20px;
+        box-sizing: border-box; 
+    }
+
+    .gallery-thumbnails {
+        width: max-content;
+        padding: 0; 
+    }
+
+    .gallery-controls {
+        display: none;
+    }
+    /* End Gallery Fixes */
+
+
+    .labels {
+        bottom: 15px;
+        left: 15px;
+        gap: 5px;
+    }
+
+    .label {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+    
+    .preloader-logo {
+        width: 100px;
+    }
+}
+
+/* Landscape Mobile (Max 480px) */
+@media (max-width: 480px) {
+    .main-content h1 {
+        font-size: 2rem;
+    }
+
+    .logo {
+        height: 35px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="preloader">
+    <img class="preloader-logo" src="./images/Screenshot 2025-11-16 061120.png" alt="Egyptian Legacy Logo">
+</div>
+
+<div class="container">
+    <div class="left-panel">
+        <div class="header">
+            <img class="logo" src="./images/Screenshot 2025-11-16 061120.png" alt="Egyptian Legacy Logo">
+            <div class="nav-links">
+                <a href="#">VR Experience</a>
+                <a href="#">Booking</a>
+                <a href="#">Services</a>
+                <a href="#">About Us</a>
+                <a href="#">Why Nevertour?</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Open Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="main-content">
+            <h1>
+                ANCIENT WISDOM.<br>
+                TIMELESS DESIGN.<br>
+                LASTING GRANDEUR.
+            </h1>
+            <p>
+                Explore the marvels of one of the world's most enduring civilizations, where architecture met divinity and science governed the ages.
+            </p>
+        </div>
+
+        <div class="gallery-section">
+            <div class="gallery-thumbnails-wrapper">
+                <div class="gallery-thumbnails">
+                    <div class="thumbnail active" data-image-index="0">
+                        <img src="./images/download (1).png" alt="Pyramids of Giza Thumbnail">
+                    </div>
+                    <div class="thumbnail" data-image-index="1">
+                        <img src="./images/diosming-0OnA47HABKM-unsplash.jpg" alt="Hieroglyphs Thumbnail">
+                    </div>
+                    <div class="thumbnail" data-image-index="2">
+                        <img src="./images/Nefertiti.jpg" alt="Temple Interior Thumbnail">
+                    </div>
+                    <div class="thumbnail" data-image-index="3">
+                        <img src="./images/download.jpg" alt="Nile River Thumbnail">
+                    </div>
+                    <div class="thumbnail" data-image-index="4">
+                        <img src="./images/Cultures-Egyptian_ Pharaoh _26.jpg" alt="Sphinx Thumbnail">
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-controls">
+                <button class="arrow-btn" id="prev-btn" aria-label="Previous Image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="arrow-btn" id="next-btn" aria-label="Next Image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <a href="#" class="contact-btn">Discover More</a>
+        <div class="main-image-container">
+            <img class="main-image" src="./images/download (1).png" alt="Main View of the Ancient Monument">
+        </div>
+
+        <div class="labels">
+            <a href="#" class="label">The Grand Pyramids</a>
+            <a href="#" class="label">Grand Egyptian Museum</a>
+            <a href="#" class="label">The Great Sphinx</a>
+            <a href="#" class="label">Siwa Oasis</a>
+            <a href="#" class="label">Tutankhamon Mask</a>
+            <a href="#" class="label">Valley of the Kings</a>
+        </div>
+        <a href="#" class="location-label">Egypt</a>
+        <a href="#" class="experience-label">A Different Experience</a>
+    </div>
+</div>
+
+<div class="mobile-nav-menu" id="mobile-nav-menu">
+    <button class="close-btn" id="close-btn" aria-label="Close Navigation">
+        <i class="fas fa-times"></i>
+    </button>
+    <a href="#">VR Experience</a>
+    <a href="#">Booking</a>
+    <a href="#">Services</a>
+    <a href="#">About Us</a>
+    <a href="#">Why Nevertour?</a>
+
+    <a href="#" class="mobile-contact-btn">Discover More</a>
+</div>
+
+<script>
+// CLEAN CODE: Clearer variable names and structure for the Egyptian theme.
+
+const preloader = document.querySelector('.preloader');
+const pyramidsThumbnails = document.querySelectorAll('.thumbnail');
+const mainMonumentImage = document.querySelector('.main-image');
+const thumbnailScroller = document.querySelector('.gallery-thumbnails-wrapper');
+const prevScrollBtn = document.getElementById('prev-btn');
+const nextScrollBtn = document.getElementById('next-btn');
+
+// Mobile Navigation Elements
+const navToggleBtn = document.getElementById('nav-toggle');
+const mobileNavMenu = document.getElementById('mobile-nav-menu');
+const closeNavBtn = document.getElementById('close-btn');
+
+const MONUMENT_IMAGES = [
+    // Ensure these paths are correct
+    "./images/download (1).png",
+    "./images/diosming-0OnA47HABKM-unsplash.jpg",
+    "./images/Nefertiti.jpg",
+    "./images/download.jpg",
+    "./images/Cultures-Egyptian_ Pharaoh _26.jpg"
+];
+
+// --- Initialization ---
+
+// Set initial main image and active thumbnail based on the defined list.
+mainMonumentImage.src = MONUMENT_IMAGES[0];
+pyramidsThumbnails[0].classList.add('active');
+
+
+// --- Preloader Logic ---
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }, 3900);
+});
+
+
+// --- Gallery Interaction Logic (Works universally on all screen sizes) ---
+
+pyramidsThumbnails.forEach((thumbnail, index) => {
+    thumbnail.addEventListener('click', () => {
+        const newImageSrc = MONUMENT_IMAGES[index];
+
+        mainMonumentImage.style.opacity = 0;
+
+        setTimeout(() => {
+            mainMonumentImage.src = newImageSrc;
+            mainMonumentImage.style.opacity = 1;
+        }, 300);
+
+        pyramidsThumbnails.forEach(thumb => thumb.classList.remove('active'));
+        thumbnail.classList.add('active');
+
+        // This ensures the thumbnail is visible after click
+        thumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+});
+
+// --- Gallery Scroll Controls (Desktop/Tablet) ---
+
+const THUMBNAIL_WIDTH = 120;
+const THUMBNAIL_GAP = 15;
+const SCROLL_AMOUNT = THUMBNAIL_WIDTH + THUMBNAIL_GAP;
+
+prevScrollBtn.addEventListener('click', () => {
+    thumbnailScroller.scrollBy({
+        left: -SCROLL_AMOUNT,
+        behavior: 'smooth'
+    });
+});
+
+nextScrollBtn.addEventListener('click', () => {
+    thumbnailScroller.scrollBy({
+        left: SCROLL_AMOUNT,
+        behavior: 'smooth'
+    });
+});
+
+
+// --- Mobile Navigation Toggle Logic ---
+
+navToggleBtn.addEventListener('click', () => {
+    mobileNavMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+});
+
+closeNavBtn.addEventListener('click', () => {
+    mobileNavMenu.classList.remove('open');
+    document.body.style.overflow = 'auto';
+});
+
+// Close menu when a standard link is clicked
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-menu a');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        // Only close if the link is a standard navigation link, not the button
+        if (!link.classList.contains('mobile-contact-btn')) {
+            mobileNavMenu.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+</script>
+</body>
+</html>
