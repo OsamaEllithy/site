@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Egyptian Legacy</title>
+<title>NeferTour | You are now in the world of civilization and knowledge of ancient Egypt</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-/* Font Imports */
-@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&display=swap');
+<link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png">
 
-/* Global & Base Styles */
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&display=swap');
 
 * {
     padding: 0;
@@ -35,9 +34,8 @@ body {
     overflow-x: hidden;
 }
 
-/* Preloader Styles */
 .preloader {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -64,7 +62,6 @@ body {
     animation: fadeIn 1s forwards, fadeOutUp 0.8s forwards 3s;
 }
 
-/* Preloader Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -80,8 +77,6 @@ body {
     100% { opacity: 0; transform: translateY(-50px); }
 }
 
-
-/* Layout Structure */
 .container {
     display: flex;
     width: 100%;
@@ -114,7 +109,6 @@ body {
     animation: slideInRight 1s forwards var(--transition-speed);
 }
 
-/* Header & Navigation */
 .header {
     display: flex;
     justify-content: flex-start;
@@ -172,7 +166,6 @@ body {
     color: var(--color-dark);
 }
 
-/* Mobile Toggle Button */
 .nav-toggle {
     display: none;
     background: none;
@@ -184,7 +177,6 @@ body {
     margin-left: auto;
 }
 
-/* Main Content (Text) */
 .main-content {
     margin-top: 50px;
     padding: 0 40px;
@@ -210,7 +202,6 @@ body {
     line-height: 1.6;
 }
 
-/* Gallery Section (Desktop) */
 .gallery-section {
     display: flex;
     align-items: center;
@@ -294,7 +285,6 @@ body {
     background-color: #555;
 }
 
-/* Right Panel - Image & Labels */
 .main-image-container {
     width: 100%;
     height: 100%;
@@ -310,7 +300,6 @@ body {
     object-fit: cover;
     transition: opacity var(--transition-speed) ease-in-out;
     position: relative;
-    /* Desktop Radii - only left side curved */
     border-top-left-radius: 60px;
     border-bottom-left-radius: 60px;
     border-top-right-radius: 0;
@@ -389,7 +378,6 @@ body {
     transform: translateY(-50%);
 }
 
-/* Animations */
 @keyframes slideInLeft {
     to { opacity: 1; transform: translateX(0); }
 }
@@ -407,10 +395,6 @@ body {
     to { opacity: 1; }
 }
 
-
-/* --- Responsive Design (Media Queries) --- */
-
-/* Mobile Navigation Menu */
 .mobile-nav-menu {
     position: fixed;
     top: 0;
@@ -471,8 +455,6 @@ body {
     cursor: pointer;
 }
 
-
-/* Mobile Devices (Max 768px) */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -487,8 +469,8 @@ body {
     .right-panel {
         height: 70vh;
         width: 100%;
-        margin: 0; /* تم إضافته لضمان إزالة أي هوامش خارجية */
-        padding: 0; /* تم إضافته لضمان إزالة أي هوامش داخلية */
+        margin: 0; 
+        padding: 0; 
     }
 
     .header {
@@ -517,16 +499,13 @@ body {
         font-size: 2.5rem;
     }
 
-    /* FIX: Main Image Radii to stick to bottom and sides but keep top curved */
     .main-image {
-        /* إعداد جميع الزوايا بشكل صريح لضمان إلغاء تأثير الديسكتوب */
         border-top-left-radius: 30px; 
         border-top-right-radius: 30px;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
     }
     
-    /* Gallery (Thumbnails) */
     .gallery-section {
         flex-direction: column;
         padding: 0;
@@ -550,8 +529,6 @@ body {
     .gallery-controls {
         display: none;
     }
-    /* End Gallery Fixes */
-
 
     .labels {
         bottom: 15px;
@@ -569,7 +546,6 @@ body {
     }
 }
 
-/* Landscape Mobile (Max 480px) */
 @media (max-width: 480px) {
     .main-content h1 {
         font-size: 2rem;
@@ -584,13 +560,13 @@ body {
 <body>
 
 <div class="preloader">
-    <img class="preloader-logo" src="./images/Screenshot 2025-11-16 061120.png" alt="Egyptian Legacy Logo">
+    <img class="preloader-logo" src="./images/logo.png" alt="Egyptian Legacy Logo">
 </div>
 
 <div class="container">
     <div class="left-panel">
         <div class="header">
-            <img class="logo" src="./images/Screenshot 2025-11-16 061120.png" alt="Egyptian Legacy Logo">
+            <img class="logo" src="./images/logo.png" alt="Egyptian Legacy Logo">
             <div class="nav-links">
                 <a href="#">VR Experience</a>
                 <a href="#">Booking</a>
@@ -605,12 +581,12 @@ body {
 
         <div class="main-content">
             <h1>
-                ANCIENT WISDOM.<br>
-                TIMELESS DESIGN.<br>
-                LASTING GRANDEUR.
+                ANCIENT WISDOM<br>
+                TIMELESS DESIGN<br>
+                LASTING GRANDEUR
             </h1>
             <p>
-                Explore the marvels of one of the world's most enduring civilizations, where architecture met divinity and science governed the ages.
+                Explore the marvels of one's of the world's most enduring civilizations, where architecture met divinity and science governed the ages.
             </p>
         </div>
 
@@ -618,19 +594,19 @@ body {
             <div class="gallery-thumbnails-wrapper">
                 <div class="gallery-thumbnails">
                     <div class="thumbnail active" data-image-index="0">
-                        <img src="./images/download (1).png" alt="Pyramids of Giza Thumbnail">
+                        <img src="./images/banner.png" alt="Pyramids of Giza Thumbnail">
                     </div>
                     <div class="thumbnail" data-image-index="1">
-                        <img src="./images/diosming-0OnA47HABKM-unsplash.jpg" alt="Hieroglyphs Thumbnail">
+                        <img src="./images/mum.jpg" alt="Hieroglyphs Thumbnail">
                     </div>
                     <div class="thumbnail" data-image-index="2">
                         <img src="./images/Nefertiti.jpg" alt="Temple Interior Thumbnail">
                     </div>
                     <div class="thumbnail" data-image-index="3">
-                        <img src="./images/download.jpg" alt="Nile River Thumbnail">
+                        <img src="./images/Herogh.jpg" alt="Nile River Thumbnail">
                     </div>
                     <div class="thumbnail" data-image-index="4">
-                        <img src="./images/Cultures-Egyptian_ Pharaoh _26.jpg" alt="Sphinx Thumbnail">
+                        <img src="./images/tut.jpg" alt="Sphinx Thumbnail">
                     </div>
                 </div>
             </div>
@@ -648,7 +624,7 @@ body {
     <div class="right-panel">
         <a href="#" class="contact-btn">Discover More</a>
         <div class="main-image-container">
-            <img class="main-image" src="./images/download (1).png" alt="Main View of the Ancient Monument">
+            <img class="main-image" src="./images/banner.png" alt="Main View of the Ancient Monument">
         </div>
 
         <div class="labels">
@@ -678,8 +654,6 @@ body {
 </div>
 
 <script>
-// CLEAN CODE: Clearer variable names and structure for the Egyptian theme.
-
 const preloader = document.querySelector('.preloader');
 const pyramidsThumbnails = document.querySelectorAll('.thumbnail');
 const mainMonumentImage = document.querySelector('.main-image');
@@ -687,37 +661,27 @@ const thumbnailScroller = document.querySelector('.gallery-thumbnails-wrapper');
 const prevScrollBtn = document.getElementById('prev-btn');
 const nextScrollBtn = document.getElementById('next-btn');
 
-// Mobile Navigation Elements
 const navToggleBtn = document.getElementById('nav-toggle');
 const mobileNavMenu = document.getElementById('mobile-nav-menu');
 const closeNavBtn = document.getElementById('close-btn');
 
 const MONUMENT_IMAGES = [
-    // Ensure these paths are correct
-    "./images/download (1).png",
-    "./images/diosming-0OnA47HABKM-unsplash.jpg",
+    "./images/banner.png",
+    "./images/mum.jpg",
     "./images/Nefertiti.jpg",
-    "./images/download.jpg",
-    "./images/Cultures-Egyptian_ Pharaoh _26.jpg"
+    "./images/Herogh.jpg",
+    "./images/tut.jpg"
 ];
 
-// --- Initialization ---
-
-// Set initial main image and active thumbnail based on the defined list.
 mainMonumentImage.src = MONUMENT_IMAGES[0];
 pyramidsThumbnails[0].classList.add('active');
 
-
-// --- Preloader Logic ---
 window.addEventListener('load', () => {
     setTimeout(() => {
         preloader.classList.add('hidden');
-        document.body.style.overflow = 'auto'; // Restore scrolling
+        document.body.style.overflow = 'auto'; 
     }, 3900);
 });
-
-
-// --- Gallery Interaction Logic (Works universally on all screen sizes) ---
 
 pyramidsThumbnails.forEach((thumbnail, index) => {
     thumbnail.addEventListener('click', () => {
@@ -733,12 +697,9 @@ pyramidsThumbnails.forEach((thumbnail, index) => {
         pyramidsThumbnails.forEach(thumb => thumb.classList.remove('active'));
         thumbnail.classList.add('active');
 
-        // This ensures the thumbnail is visible after click
         thumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     });
 });
-
-// --- Gallery Scroll Controls (Desktop/Tablet) ---
 
 const THUMBNAIL_WIDTH = 120;
 const THUMBNAIL_GAP = 15;
@@ -758,9 +719,6 @@ nextScrollBtn.addEventListener('click', () => {
     });
 });
 
-
-// --- Mobile Navigation Toggle Logic ---
-
 navToggleBtn.addEventListener('click', () => {
     mobileNavMenu.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -771,11 +729,9 @@ closeNavBtn.addEventListener('click', () => {
     document.body.style.overflow = 'auto';
 });
 
-// Close menu when a standard link is clicked
 const mobileNavLinks = document.querySelectorAll('.mobile-nav-menu a');
 mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
-        // Only close if the link is a standard navigation link, not the button
         if (!link.classList.contains('mobile-contact-btn')) {
             mobileNavMenu.classList.remove('open');
             document.body.style.overflow = 'auto';
