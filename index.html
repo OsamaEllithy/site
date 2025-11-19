@@ -3,576 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeferTour | You are now in the world of civilization and knowledge of ancient Egypt</title>
+<title>Business Website | Your Fashion Destination</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&display=swap');
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-:root {
-    --color-dark: #0d0d0d;
-    --color-light: #f0f0f0;
-    --color-grey: #999;
-    --transition-speed: 0.3s;
-}
-
-body {
-    font-family: "Reem Kufi", sans-serif;
-    background-color: var(--color-dark);
-    color: var(--color-light);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    min-height: 100vh;
-    box-sizing: border-box;
-    overflow-x: hidden;
-}
-
-.preloader {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 1;
-    transition: opacity 0.8s ease-out;
-    flex-direction: column;
-}
-
-.preloader.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.preloader-logo {
-    width: 100px;
-    height: auto;
-    opacity: 0;
-    animation: fadeIn 1s forwards, fadeOutUp 0.8s forwards 3s;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInScale {
-    0% { opacity: 0; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeOutUp {
-    0% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-50px); }
-}
-
-.container {
-    display: flex;
-    width: 100%;
-}
-
-.left-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 40px;
-    padding-right: 0;
-    min-width: 45%;
-    opacity: 0;
-    transform: translateX(-50px);
-    animation: slideInLeft 1s forwards var(--transition-speed);
-}
-
-.right-panel {
-    flex: 1;
-    position: relative;
-    height: 100vh;
-    padding: 0;
-    background-color: var(--color-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transform: translateX(50px);
-    animation: slideInRight 1s forwards var(--transition-speed);
-}
-
-.header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    padding: 0 40px;
-    gap: 40px;
-}
-
-.logo {
-    margin: 0;
-    width: auto;
-    height: 45px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    color: var(--color-light);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    opacity: 0.7;
-    transition: opacity var(--transition-speed);
-}
-
-.nav-links a:hover {
-    opacity: 1;
-}
-
-.contact-btn {
-    background-color: transparent;
-    border: 1px solid var(--color-light);
-    font-family: "Reem Kufi", sans-serif;
-    color: var(--color-light);
-    padding: 8px 14px;
-    border-radius: 25px;
-    font-weight: 400;
-    cursor: pointer;
-    transition: background-color var(--transition-speed), color var(--transition-speed);
-    display: flex;
-    align-items: center;
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    z-index: 10;
-    text-decoration: none;
-}
-
-.contact-btn:hover {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-}
-
-.nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--color-light);
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 20;
-    margin-left: auto;
-}
-
-.main-content {
-    margin-top: 50px;
-    padding: 0 40px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s forwards 0.5s;
-}
-
-.main-content h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
-    font-family: "Reem Kufi", sans-serif;
-}
-
-.main-content p {
-    font-size: 1rem;
-    color: var(--color-grey);
-    max-width: 450px;
-    line-height: 1.6;
-}
-
-.gallery-section {
-    display: flex;
-    align-items: center;
-    padding: 0 40px;
-    margin-top: 40px;
-    opacity: 0;
-    animation: fadeInUp 1s forwards 0.7s;
-}
-
-.gallery-thumbnails-wrapper {
-    max-width: 390px;
-    width: 100%;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    flex-grow: 1;
-    padding: 5px 0;
-    box-sizing: content-box;
-}
-
-.gallery-thumbnails {
-    display: flex;
-    gap: 15px;
-    flex-shrink: 0;
-    width: calc(5 * 120px + 4 * 15px);
-}
-
-.thumbnail {
-    min-width: 120px;
-    width: 120px;
-    height: 120px;
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform var(--transition-speed), border var(--transition-speed), opacity var(--transition-speed);
-    border: 2px solid transparent;
-    opacity: 0.5;
-}
-
-.thumbnail.active {
-    border: 2px solid var(--color-light);
-    opacity: 1;
-    transform: scale(1.05);
-}
-
-.thumbnail:hover {
-    transform: scale(1.05);
-    border: 2px solid var(--color-light);
-    opacity: 1;
-}
-
-.thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.gallery-controls {
-    display: flex;
-    gap: 10px;
-    margin-left: 20px;
-    flex-shrink: 0;
-}
-
-.arrow-btn {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color var(--transition-speed);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.arrow-btn:hover {
-    background-color: #555;
-}
-
-.main-image-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity var(--transition-speed) ease-in-out;
-    position: relative;
-    border-top-left-radius: 60px;
-    border-bottom-left-radius: 60px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.labels {
-    position: absolute;
-    bottom: 40px;
-    left: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    z-index: 10;
-    opacity: 0;
-    animation: fadeIn 1s forwards 1s;
-}
-
-.label, .location-label, .experience-label {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-light);
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    backdrop-filter: blur(5px);
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color var(--transition-speed), transform var(--transition-speed);
-    display: inline-block;
-}
-
-.label:hover, .location-label:hover, .experience-label:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-.location-label {
-    position: absolute;
-    top: 25%;
-    right: 15%;
-    z-index: 10;
-    opacity: 0;
-    animation: fadeIn 1s forwards 1.2s;
-}
-
-.location-label::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -15px;
-    width: 10px;
-    height: 10px;
-    background-color: var(--color-light);
-    border-radius: 50%;
-    transform: translateY(-50%);
-}
-
-.experience-label {
-    position: absolute;
-    bottom: 30%;
-    left: 15%;
-    z-index: 10;
-    opacity: 0;
-    animation: fadeIn 1s forwards 1.4s;
-}
-
-.experience-label::before {
-    content: '';
-    position: absolute;
-    bottom: 50%;
-    right: -15px;
-    width: 10px;
-    height: 10px;
-    background-color: var(--color-light);
-    border-radius: 50%;
-    transform: translateY(-50%);
-}
-
-@keyframes slideInLeft {
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInRight {
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.mobile-nav-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(13, 13, 13, 0.95);
-    z-index: 99;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translateY(-100%);
-    transition: transform 0.5s ease-in-out;
-}
-
-.mobile-nav-menu.open {
-    transform: translateY(0);
-}
-
-.mobile-nav-menu a {
-    color: var(--color-light);
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 15px 0;
-    transition: opacity var(--transition-speed);
-}
-
-.mobile-nav-menu a:hover {
-    opacity: 0.7;
-}
-
-.mobile-nav-menu .mobile-contact-btn {
-    background-color: transparent;
-    border: 0.5px solid white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 1.2rem;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.mobile-nav-menu .mobile-contact-btn:hover {
-    background-color: var(--color-light);
-    color: var(--color-dark);
-}
-
-.close-btn {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: var(--color-light);
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .left-panel {
-        width: 100%;
-        padding: 20px 0;
-        min-height: auto;
-    }
-
-    .right-panel {
-        height: 70vh;
-        width: 100%;
-        margin: 0; 
-        padding: 0; 
-    }
-
-    .header {
-        justify-content: space-between;
-        padding: 0 20px;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .contact-btn {
-        display: none;
-    }
-
-    .nav-toggle {
-        display: block;
-    }
-
-    .main-content {
-        margin-top: 30px;
-        padding: 0 20px;
-    }
-
-    .main-content h1 {
-        font-size: 2.5rem;
-    }
-
-    .main-image {
-        border-top-left-radius: 30px; 
-        border-top-right-radius: 30px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-    
-    .gallery-section {
-        flex-direction: column;
-        padding: 0;
-        margin-bottom: 40px;
-    }
-
-    .gallery-thumbnails-wrapper {
-        max-width: 100%;
-        width: 100%; 
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding: 5px 20px;
-        box-sizing: border-box; 
-    }
-
-    .gallery-thumbnails {
-        width: max-content;
-        padding: 0; 
-    }
-
-    .gallery-controls {
-        display: none;
-    }
-
-    .labels {
-        bottom: 15px;
-        left: 15px;
-        gap: 5px;
-    }
-
-    .label {
-        padding: 6px 10px;
-        font-size: 0.7rem;
-    }
-    
-    .preloader-logo {
-        width: 100px;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-content h1 {
-        font-size: 2rem;
-    }
-
-    .logo {
-        height: 35px;
-    }
-}
-</style>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div class="preloader">
-    <img class="preloader-logo" src="./images/logo.png" alt="Egyptian Legacy Logo">
+    <img class="preloader-logo" src="./images/logo.png" alt="Egyptian Legacy Logo" loading="lazy">
 </div>
 
-<div class="container">
+<div class="container" id="hero">
     <div class="left-panel">
         <div class="header">
-            <img class="logo" src="./images/logo.png" alt="Egyptian Legacy Logo">
+            <img class="logo" src="./images/logo.png" alt="Egyptian Legacy Logo" loading="lazy">
             <div class="nav-links">
-                <a href="#">VR Experience</a>
-                <a href="#">Booking</a>
-                <a href="#">Services</a>
-                <a href="#">About Us</a>
-                <a href="#">Why Nevertour?</a>
+                <a href="#collection">Collection</a>
+                <a href="#women-products">Shop Women</a>
+                <a href="#products">Shop Men</a>
+                <a href="#features">Blog</a>
+            </div>
+            
+            <div class="header-icons">
+                <a href="#" class="icon-btn" aria-label="Favorites">
+                    <i class="far fa-heart"></i>
+                    <span class="favorite-counter"></span>
+                </a>
+                <a href="#" class="icon-btn" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-counter"></span>
+                </a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Open Navigation">
                 <i class="fas fa-bars"></i>
@@ -581,12 +42,12 @@ body {
 
         <div class="main-content">
             <h1>
-                ANCIENT WISDOM<br>
-                TIMELESS DESIGN<br>
-                LASTING GRANDEUR
+                STYLE REVOLUTION<br>
+                PREMIUM QUALITY<br>
+                DEFINE YOUR LOOK
             </h1>
             <p>
-                Explore the marvels of one's of the world's most enduring civilizations, where architecture met divinity and science governed the ages.
+                Discover our new collection crafted with exceptional materials and tailored for the modern individual who seeks elegance and comfort.
             </p>
         </div>
 
@@ -594,19 +55,19 @@ body {
             <div class="gallery-thumbnails-wrapper">
                 <div class="gallery-thumbnails">
                     <div class="thumbnail active" data-image-index="0">
-                        <img src="./images/banner.png" alt="Pyramids of Giza Thumbnail">
+                        <img src="./images/Sample.jpg" alt="Pyramids of Giza Thumbnail" loading="lazy">
                     </div>
                     <div class="thumbnail" data-image-index="1">
-                        <img src="./images/mum.jpg" alt="Hieroglyphs Thumbnail">
+                        <img src="./images/Sample.jpg" alt="Hieroglyphs Thumbnail" loading="lazy">
                     </div>
                     <div class="thumbnail" data-image-index="2">
-                        <img src="./images/Nefertiti.jpg" alt="Temple Interior Thumbnail">
+                        <img src="./images/Sample.jpg" alt="Temple Interior Thumbnail" loading="lazy">
                     </div>
                     <div class="thumbnail" data-image-index="3">
-                        <img src="./images/Herogh.jpg" alt="Nile River Thumbnail">
+                        <img src="./images/Sample.jpg" alt="Nile River Thumbnail" loading="lazy">
                     </div>
                     <div class="thumbnail" data-image-index="4">
-                        <img src="./images/tut.jpg" alt="Sphinx Thumbnail">
+                        <img src="./images/Sample.jpg" alt="Sphinx Thumbnail" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -622,21 +83,16 @@ body {
     </div>
 
     <div class="right-panel">
-        <a href="#" class="contact-btn">Discover More</a>
+        <a href="#women-products" class="contact-btn">Shop Now</a>
         <div class="main-image-container">
-            <img class="main-image" src="./images/banner.png" alt="Main View of the Ancient Monument">
+            <img class="main-image" src="./images/Sample.jpg" alt="Main View of the Ancient Monument" loading="lazy" loading="lazy">
         </div>
 
         <div class="labels">
-            <a href="#" class="label">The Grand Pyramids</a>
-            <a href="#" class="label">Grand Egyptian Museum</a>
-            <a href="#" class="label">The Great Sphinx</a>
-            <a href="#" class="label">Siwa Oasis</a>
-            <a href="#" class="label">Tutankhamon Mask</a>
-            <a href="#" class="label">Valley of the Kings</a>
+            <a href="#promo" class="label">New Arrival</a>
+            <a href="#women-products" class="label">Women's Wear</a>
+            <a href="#products" class="label">Men's Fashion</a>
         </div>
-        <a href="#" class="location-label">Egypt</a>
-        <a href="#" class="experience-label">A Different Experience</a>
     </div>
 </div>
 
@@ -644,100 +100,414 @@ body {
     <button class="close-btn" id="close-btn" aria-label="Close Navigation">
         <i class="fas fa-times"></i>
     </button>
-    <a href="#">VR Experience</a>
-    <a href="#">Booking</a>
-    <a href="#">Services</a>
-    <a href="#">About Us</a>
-    <a href="#">Why Nevertour?</a>
-
-    <a href="#" class="mobile-contact-btn">Discover More</a>
+    <a href="#collection" onclick="document.getElementById('mobile-nav-menu').classList.remove('open')">Collection</a>
+    <a href="#women-products" onclick="document.getElementById('mobile-nav-menu').classList.remove('open')">Women Collection</a>
+    <a href="#products" onclick="document.getElementById('mobile-nav-menu').classList.remove('open')">Men Collection</a>
+    <a href="#features" onclick="document.getElementById('mobile-nav-menu').classList.remove('open')">Blog</a>
+    
+    <a href="#" class="mobile-icon-link" onclick="document.getElementById('mobile-nav-menu').classList.remove('open')">
+        <i class="far fa-heart"></i> Favorites
+    </a>
+    <a href="#" class="mobile-icon-link" onclick="document.getElementById('mobile-nav-menu').classList.remove('open')">
+        <i class="fas fa-shopping-cart"></i> Cart
+    </a>
+    <a href="#women-products" class="mobile-contact-btn">Shop Now</a>
 </div>
 
-<script>
-const preloader = document.querySelector('.preloader');
-const pyramidsThumbnails = document.querySelectorAll('.thumbnail');
-const mainMonumentImage = document.querySelector('.main-image');
-const thumbnailScroller = document.querySelector('.gallery-thumbnails-wrapper');
-const prevScrollBtn = document.getElementById('prev-btn');
-const nextScrollBtn = document.getElementById('next-btn');
 
-const navToggleBtn = document.getElementById('nav-toggle');
-const mobileNavMenu = document.getElementById('mobile-nav-menu');
-const closeNavBtn = document.getElementById('close-btn');
+<section class="categories-section" id="categories">
+    <h2 class="section-title">CATEGORY</h2>
 
-const MONUMENT_IMAGES = [
-    "./images/banner.png",
-    "./images/mum.jpg",
-    "./images/Nefertiti.jpg",
-    "./images/Herogh.jpg",
-    "./images/tut.jpg"
-];
+    <div class="categories-grid">
+        <div class="cat-card">
+            <img src="./images/Sample.jpg" alt="Man" loading="lazy">
+            <div class="cat-label">MAN<br><span>collection</span></div>
+        </div>
 
-mainMonumentImage.src = MONUMENT_IMAGES[0];
-pyramidsThumbnails[0].classList.add('active');
+        <div class="cat-card">
+            <img src="./images/Sample.jpg" alt="Woman" loading="lazy">
+            <div class="cat-label">WOMAN<br><span>collection</span></div>
+        </div>
 
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        preloader.classList.add('hidden');
-        document.body.style.overflow = 'auto'; 
-    }, 3900);
-});
+        <div class="cat-card">
+            <img src="./images/Sample.jpg" alt="Kids" loading="lazy">
+            <div class="cat-label">KIDS<br><span>collection</span></div>
+        </div>
+    </div>
+</section>
 
-pyramidsThumbnails.forEach((thumbnail, index) => {
-    thumbnail.addEventListener('click', () => {
-        const newImageSrc = MONUMENT_IMAGES[index];
 
-        mainMonumentImage.style.opacity = 0;
+<section class="collection-section" id="collection">
+    <h2 class="section-title">COLLECTION</h2>
 
-        setTimeout(() => {
-            mainMonumentImage.src = newImageSrc;
-            mainMonumentImage.style.opacity = 1;
-        }, 300);
+    <div class="collection-grid">
 
-        pyramidsThumbnails.forEach(thumb => thumb.classList.remove('active'));
-        thumbnail.classList.add('active');
+        <div class="col-card large">
+            <img src="./images/Sample.jpg" alt="" loading="lazy">
+            <div class="col-label">CASUAL<br><span>COLLECTION</span></div>
+        </div>
 
-        thumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    });
-});
+        <div class="col-card small">
+            <img src="./images/Sample.jpg" alt="" loading="lazy">
+            <div class="col-label">SUMMER<br><span>EDITION</span></div>
+        </div>
 
-const THUMBNAIL_WIDTH = 120;
-const THUMBNAIL_GAP = 15;
-const SCROLL_AMOUNT = THUMBNAIL_WIDTH + THUMBNAIL_GAP;
+        <div class="col-card wide">
+            <img src="./images/Sample.jpg" alt="" loading="lazy">
+            <div class="col-label">WINTER<br><span>EDITION</span></div>
+        </div>
 
-prevScrollBtn.addEventListener('click', () => {
-    thumbnailScroller.scrollBy({
-        left: -SCROLL_AMOUNT,
-        behavior: 'smooth'
-    });
-});
+        <div class="col-card large">
+            <img src="./images/Sample.jpg" alt="" loading="lazy">
+            <div class="col-label">FORMAL<br><span>COLLECTION</span></div>
+        </div>
 
-nextScrollBtn.addEventListener('click', () => {
-    thumbnailScroller.scrollBy({
-        left: SCROLL_AMOUNT,
-        behavior: 'smooth'
-    });
-});
+    </div>
+</section>
 
-navToggleBtn.addEventListener('click', () => {
-    mobileNavMenu.classList.add('open');
-    document.body.style.overflow = 'hidden';
-});
 
-closeNavBtn.addEventListener('click', () => {
-    mobileNavMenu.classList.remove('open');
-    document.body.style.overflow = 'auto';
-});
+<section class="product-gallery-section" id="women-products">
+    <h2 class="section-title">Women Collection</h2>
+    
+    <div class="gallery-controls-wrapper">
+        <button class="gallery-arrow-btn" id="prev-new-btn" aria-label="Previous Product">
+            <i class="fas fa-chevron-left"></i>
+        </button>
 
-const mobileNavLinks = document.querySelectorAll('.mobile-nav-menu a');
-mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (!link.classList.contains('mobile-contact-btn')) {
-            mobileNavMenu.classList.remove('open');
-            document.body.style.overflow = 'auto';
-        }
-    });
-});
-</script>
+        <div class="product-slider-container">
+            <div class="product-slider" id="new-product-slider">
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="New Product 1" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>New Product 1</h3>
+                        <p class="product-category">New Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">300 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="New Product 2" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>New Product 2</h3>
+                        <p class="product-category">New Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">450 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="New Product 3" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>New Product 3</h3>
+                        <p class="product-category">New Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">520 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="New Product 4" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>New Product 4</h3>
+                        <p class="product-category">New Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">680 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="New Product 5" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>New Product 5</h3>
+                        <p class="product-category">New Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">750 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="New Product 6" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>New Product 6</h3>
+                        <p class="product-category">New Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">890 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <button class="gallery-arrow-btn" id="next-new-btn" aria-label="Next Product">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</section>
+
+
+<section class="promo-banner" id="promo">
+    <div class="banner-image">
+        <img src="./images/Sample.jpg" alt="Unlock Your Style Promo Image" loading="lazy">
+    </div>
+    <div class="banner-content">
+        <h2 class="promo-title">UNLOCK YOUR STYLE</h2>
+        <p class="promo-subtitle">SAVE 25% NOW</p>
+        
+        <form class="subscribe-form" action="#" method="POST">
+            <input type="email" placeholder="Email Address" required>
+            <button type="submit" class="subscribe-btn">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+
+<section class="product-gallery-section" id="products">
+    <h2 class="section-title">Men Collection</h2>
+    
+    <div class="gallery-controls-wrapper">
+        <button class="gallery-arrow-btn" id="prev-product-btn" aria-label="Previous Product">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="product-slider-container">
+            <div class="product-slider" id="product-slider">
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="Product 1 - Classic Shirt" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Egyptian Shirt</h3>
+                        <p class="product-category">Men's Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">250 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="Product 2 - Winter Coat" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Luxurious Winter Coat</h3>
+                        <p class="product-category">Winter Edition</p>
+                        <div class="product-actions">
+                            <span class="product-price">1200 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="Product 3 - Elegant Dress" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Elegant Flowing Dress</h3>
+                        <p class="product-category">Women's Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">850 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="Product 4 - Kids Jacket" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Kids Summer Jacket</h3>
+                        <p class="product-category">Kids Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">320 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="Product 5 - Light T-shirt" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Light Cotton T-shirt</h3>
+                        <p class="product-category">Summer Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">180 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="./images/Sample.jpg" alt="Product 6 - Formal Suit" loading="lazy">
+                        <button class="favorite-btn" aria-label="Add to Favorites"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Formal Suit</h3>
+                        <p class="product-category">Formal Collection</p>
+                        <div class="product-actions">
+                            <span class="product-price">3500 EGP</span>
+                            <button class="add-to-cart-btn" aria-label="Add to Cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <button class="gallery-arrow-btn" id="next-product-btn" aria-label="Next Product">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</section>
+
+
+<section class="feature-section unboxed-layout" id="features">
+    
+    <div class="feature-separated-grid">
+        
+        <div class="grid-item grid-image top-left">
+            <img src="./images/Sample.jpg" alt="Clothes on a rack" loading="lazy">
+        </div>
+        
+        <div class="grid-item grid-text top-right">
+            <h3 class="feature-title">Crafted for Lasting Comfort</h3>
+            <p class="feature-body">
+                We believe that true style is built on quality. Our garments are meticulously crafted using premium, sustainable fabrics, ensuring exceptional comfort, durability, and a perfect fit that lasts season after season.
+            </p>
+        </div>
+        
+        <div class="grid-item grid-text bottom-left">
+            <h3 class="feature-title">Defining the Modern Aesthetic</h3>
+            <p class="feature-body">
+                Our design philosophy blends timeless elegance with modern trends. We curate collections that empower you to express your unique personality, offering versatile pieces perfect for any occasion, from day to night.
+            </p>
+        </div>
+        
+        <div class="grid-item grid-image bottom-right">
+            <img src="./images/Sample.jpg" alt="Knitted hat and jeans" loading="lazy">
+        </div>
+        
+    </div>
+    
+</section>
+
+<footer class="site-footer">
+    <div class="footer-container">
+        
+        <div class="footer-column footer-logo-col">
+            <img class="footer-logo" src="./images/logo.png" alt="Egyptian Legacy Logo" loading="lazy">
+            <p class="footer-description">
+                Curating exceptional style and quality for your everyday elegance.
+            </p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4>EXPLORE</h4>
+            <ul>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#women-products">Shop Women</a></li>
+                <li><a href="#products">Shop Men</a></li>
+                <li><a href="#features">Blog</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>SUPPORT</h4>
+            <ul>
+                <li><a href="#">Returns</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>LEGAL</h4>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 Business. All Rights Reserved. Design by Pinkish Yellow.</p>
+    </div>
+</footer>
+
+<button id="back-to-top-btn" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+<script src="js/app.js"></script>
 </body>
 </html>
